@@ -46,6 +46,8 @@ namespace BlackJack
             card_name = GetCardName(player_cards[1]);
             Console.WriteLine("プレイヤーの引いた二枚目のカード：{0}の{1}", card_name.mark, card_name.number);
 
+            Console.WriteLine("あなたの現在の得点は：{0}", GetScore(player_cards));
+
             while (player_choice == "y") {
                 Console.WriteLine("カードを引きますか？y/n");
                 player_choice = Console.ReadLine();
@@ -126,9 +128,9 @@ namespace BlackJack
             int sum_score = 0;
             for (int i = 0; i < hand_cards.Count(); i++)
             {
-                int score = hand_cards[i] % 13;
+                int score = (1 + hand_cards[i] % 13);
                 if (score >= 10) score = 10;
-                sum_score = sum_score + (score + 1);
+                sum_score += score;
             }
             return sum_score;
         }
