@@ -15,7 +15,7 @@ namespace BlackJack
             List<int> player_cards = new List<int>();
             int player_score = 0;
             int cpu_score = 0;
-            (string mark, int number) card_name;
+            (string mark, string number) card_name;
             int card;
             string player_choice = "y";
             Random rand = new Random();
@@ -110,16 +110,22 @@ namespace BlackJack
             Console.ReadLine();
         }
 
-        static public (string mark,int number) GetCardName(int card)
+        static public (string mark,string number) GetCardName(int card)
         {
             string mark = "";
+            string number = "";
             int tmp = card / 13;
             if (tmp == 0) { mark = "ハート"; }
             else if (tmp == 1) { mark = "ダイヤ"; }
             else if (tmp == 2) { mark = "エース"; }
             else if (tmp == 3) { mark = "クローバー"; }
 
-            int number = 1 + card % 13;
+            number = (1 + card % 13).ToString();
+            if (number == "1") { number = "A"; }
+            else if (number == "11") { number = "J"; }
+            else if (number == "12") { number = "Q"; }
+            else if (number == "13") { number = "K"; }
+
             return (mark, number);
         }
 
